@@ -11,13 +11,21 @@ class TestUserSerializer(serializers.Serializer):
     email = serializers.EmailField()
 
     def validate_name(self,value):
-        print(value)
+        # Costom validation
+        if 'developer' in value:
+            raise serializers.ValidationError('Error, no puede existir un usuario con ese nombre')
+        
         return value
 
     def validate_email(self,value):
-        print(value)
+        if value == '':
+            raise serializers.ValidationError('Tiene que ingresar un correo')
+
+        if self.validate_name(self.context['name']) in value:
+            raise serializers.ValidationError('el email no puede contener el nombre')
         return value
 
     def validate(self,data):
-        print("general validacion")
+        # if data['name'] in data['email']:
+        #     raise serializers.ValidationError('el email no puede contener el nombre')
         return data
