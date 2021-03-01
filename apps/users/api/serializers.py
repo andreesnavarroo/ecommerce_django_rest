@@ -34,8 +34,9 @@ class TestUserSerializer(serializers.Serializer):
 
     def update(self,instance,validate_data):
         # Manualmente
-        print(validate_data)
         instance.name = validate_data.get('name', instance.name)
         instance.email = validate_data.get('email', instance.email)
         instance.save()
         return instance
+
+ 
