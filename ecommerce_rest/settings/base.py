@@ -30,6 +30,7 @@ BASE_APPS = [
 LOCAL_APPS = [
     'apps.base',
     'apps.users',
+    'rest_framework.authtoken',
     'apps.products',
 
 ]
